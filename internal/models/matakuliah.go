@@ -7,7 +7,7 @@ import (
 var MataKuliahSet = set.New()
 
 type MataKuliah struct {
-	ID              int
+	ID              string
 	Nama            string
 	SKS             int
 	Jurusan         string
@@ -16,7 +16,7 @@ type MataKuliah struct {
 }
 
 // NewMataKuliah creates a new MataKuliah object
-func NewMataKuliah(ID int, Nama string, SKS int, Jurusan string, SemesterMinimal int, PrediksiNilai string) {
+func NewMataKuliah(ID string, Nama string, SKS int, Jurusan string, SemesterMinimal int, PrediksiNilai string) {
 	// validate each values
 	if SKS < 1 {
 		panic("sks must be greater than 0")
