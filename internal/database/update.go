@@ -5,6 +5,11 @@ import (
 	"scheduler-backend/internal/models"
 )
 
+/*
+Creating an update towards the jurusan will be a bit tricky, because we need to update the mata kuliah as well.
+Other than that, jurusan is a primary key, so we can't update it and it will be very unlikely to be updated.
+*/
+
 // UpdateMataKuliah will update the mata kuliah with the given ID both in the set and the database
 func UpdateMataKuliah(ID string, Nama string, SKS int, Jurusan string, SemesterMinimal int, PrediksiNilai string) {
 	if !models.MataKuliahExists(ID) {
