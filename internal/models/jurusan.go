@@ -5,7 +5,7 @@ type Jurusan struct {
 	Fakultas string
 }
 
-// Create a new jurusan object
+// NewJurusan creates a new jurusan object
 func NewJurusan(jurusan string, fakultas string) *Jurusan {
 	j := Jurusan{
 		Jurusan:  jurusan,
