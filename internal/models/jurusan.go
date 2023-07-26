@@ -4,7 +4,7 @@ import (
 	"github.com/golang-collections/collections/set"
 )
 
-var jurusanSet = set.New()
+var JurusanSet = set.New()
 
 type Jurusan struct {
 	Jurusan  string
@@ -17,5 +17,5 @@ func NewJurusan(jurusan string, fakultas string) {
 		Jurusan:  jurusan,
 		Fakultas: fakultas,
 	}
-	jurusanSet.Insert(j)
+	JurusanSet.Insert(j)
 }
