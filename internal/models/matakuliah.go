@@ -79,3 +79,19 @@ func MataKuliahExists(ID string) bool {
 	})
 	return res
 }
+
+// DeleteMataKuliah will delete a mata kuliah from the set
+func DeleteMataKuliah(ID string) {
+	var mk MataKuliah
+	if !MataKuliahExists(ID) {
+		panic("mata kuliah doesn't exist")
+	}
+	MataKuliahSet.Do(func(i interface{}) {
+		if i.(MataKuliah).ID == ID {
+			mk = i.(MataKuliah)
+			return
+		}
+	})
+
+	MataKuliahSet.Remove(mk)
+}
