@@ -58,7 +58,7 @@ func validateID(ID string) bool {
 	return true
 }
 
-// validateNilai will checks if the PrediksiNilai is within the range of the allowed values
+// validateNilai will check if the PrediksiNilai is within the range of the allowed values
 func validateNilai(PrediksiNilai string) bool {
 	switch PrediksiNilai {
 	case "A", "AB", "B", "BC", "C", "D", "E":
@@ -66,4 +66,16 @@ func validateNilai(PrediksiNilai string) bool {
 	default:
 		return false
 	}
+}
+
+// MataKuliahExists will check if a mata kuliah exists in the database from its ID
+func MataKuliahExists(ID string) bool {
+	res := false
+	MataKuliahSet.Do(func(i interface{}) {
+		if i.(MataKuliah).ID == ID {
+			res = true
+			return
+		}
+	})
+	return res
 }
