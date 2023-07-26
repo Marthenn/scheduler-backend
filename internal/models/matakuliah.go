@@ -16,7 +16,7 @@ type MataKuliah struct {
 }
 
 // NewMataKuliah creates a new MataKuliah object
-func NewMataKuliah(ID int, Nama string, SKS int, Jurusan string, SemesterMinimal int, PrediksiNilai string) *MataKuliah {
+func NewMataKuliah(ID int, Nama string, SKS int, Jurusan string, SemesterMinimal int, PrediksiNilai string) {
 	// create the matakuliah object
 	mk := MataKuliah{
 		ID:              ID,
@@ -27,6 +27,4 @@ func NewMataKuliah(ID int, Nama string, SKS int, Jurusan string, SemesterMinimal
 		PrediksiNilai:   PrediksiNilai,
 	}
 	MataKuliahSet.Insert(mk)
-
-	return &mk
 }
