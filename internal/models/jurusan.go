@@ -31,3 +31,15 @@ func JurusanExists(jurusan string) bool {
 	})
 	return res
 }
+
+// HasMataKuliah check if a jurusan has any mata kuliah
+func HasMataKuliah(jurusan string) bool {
+	res := false
+	MataKuliahSet.Do(func(mk interface{}) {
+		if mk.(MataKuliah).Jurusan == jurusan {
+			res = true
+			return
+		}
+	})
+	return res
+}
