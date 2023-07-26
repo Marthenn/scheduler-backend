@@ -2,13 +2,12 @@ package database
 
 import (
 	"context"
-	"github.com/golang-collections/collections/set"
 	"scheduler-backend/internal/models"
 )
 
 // ReadJurusan reads all jurusan from the database
 func ReadJurusan() {
-	models.JurusanSet = set.New() // reset the set
+	models.JurusanList = []models.Jurusan{} // reset the list
 
 	conn := getDBConnection()
 	defer conn.Close(context.Background())
@@ -31,7 +30,7 @@ func ReadJurusan() {
 
 // ReadMataKuliah reads all mata kuliah from the database
 func ReadMataKuliah() {
-	models.MataKuliahSet = set.New() // reset the set
+	models.MataKuliahList = []models.MataKuliah{} // reset the list
 
 	conn := getDBConnection()
 	defer conn.Close(context.Background())

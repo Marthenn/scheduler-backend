@@ -1,10 +1,6 @@
 package models
 
-import (
-	"github.com/golang-collections/collections/set"
-)
-
-var JurusanSet = set.New()
+var JurusanList = []Jurusan{}
 
 type Jurusan struct {
 	Jurusan  string
@@ -17,44 +13,38 @@ func NewJurusan(jurusan string, fakultas string) {
 		Jurusan:  jurusan,
 		Fakultas: fakultas,
 	}
-	JurusanSet.Insert(j)
+	JurusanList = append(JurusanList, j)
 }
 
 // JurusanExists check if a jurusan exists in the set (the fakultas will be ignored)
 func JurusanExists(jurusan string) bool {
-	res := false
-	JurusanSet.Do(func(j interface{}) {
-		if j.(Jurusan).Jurusan == jurusan {
-			res = true
-			return
+	for i := 0; i < len(JurusanList); i++ {
+		if JurusanList[i].Jurusan == jurusan {
+			return true
 		}
-	})
-	return res
+	}
+	return false
 }
 
 // HasMataKuliah check if a jurusan has any mata kuliah
 func HasMataKuliah(jurusan string) bool {
-	res := false
-	MataKuliahSet.Do(func(mk interface{}) {
-		if mk.(MataKuliah).Jurusan == jurusan {
-			res = true
-			return
+	for i := 0; i < len(MataKuliahList); i++ {
+		if MataKuliahList[i].Jurusan == jurusan {
+			return true
 		}
-	})
-	return res
+	}
+	return false
 }
 
 // DeleteJurusan will remove a jurusan from the set
 func DeleteJurusan(jurusan string) {
-	var fakultas string
 	if !JurusanExists(jurusan) {
 		panic("jurusan doesn't exist")
 	}
-	JurusanSet.Do(func(j interface{}) {
-		if j.(Jurusan).Jurusan == jurusan {
-			fakultas = j.(Jurusan).Fakultas
-			return
+	for i := 0; i < len(JurusanList); i++ {
+		if JurusanList[i].Jurusan == jurusan {
+			JurusanList = append(JurusanList[:i], JurusanList[i+1:]...)
+			break
 		}
-	})
-	JurusanSet.Remove(Jurusan{Jurusan: jurusan, Fakultas: fakultas})
+	}
 }

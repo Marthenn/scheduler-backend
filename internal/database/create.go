@@ -15,7 +15,7 @@ func AddJurusan(jurusan string, fakultas string) {
 
 	_, err := conn.Exec(context.Background(), "insert into jurusan values ($1, $2)", jurusan, fakultas)
 	if err != nil {
-		models.JurusanSet.Remove(models.Jurusan{Jurusan: jurusan, Fakultas: fakultas})
+		models.DeleteJurusan(jurusan)
 		panic(err)
 	}
 }
@@ -34,7 +34,7 @@ func AddMatkul(ID string, Nama string, SKS int, Jurusan string, SemesterMinimal 
 	defer conn.Close(context.Background())
 	_, err := conn.Exec(context.Background(), "insert into matakuliah values ($1, $2, $3, $4, $5, $6)", ID, Nama, SKS, Jurusan, SemesterMinimal, PrediksiNilai)
 	if err != nil {
-		models.MataKuliahSet.Remove(models.MataKuliah{ID: ID, Nama: Nama, SKS: SKS, Jurusan: Jurusan, SemesterMinimal: SemesterMinimal, PrediksiNilai: PrediksiNilai})
+		models.DeleteMataKuliah(ID)
 		panic(err)
 	}
 }

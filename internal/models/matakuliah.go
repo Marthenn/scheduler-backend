@@ -4,6 +4,7 @@ import (
 	"github.com/golang-collections/collections/set"
 )
 
+var MataKuliahList = []MataKuliah{}
 var MataKuliahSet = set.New()
 
 type MataKuliah struct {
@@ -40,7 +41,7 @@ func NewMataKuliah(ID string, Nama string, SKS int, Jurusan string, SemesterMini
 		SemesterMinimal: SemesterMinimal,
 		PrediksiNilai:   PrediksiNilai,
 	}
-	MataKuliahSet.Insert(mk)
+	MataKuliahList = append(MataKuliahList, mk)
 }
 
 // validateID will check if the ID consists of 2letters and 4numbers [A-Z]{2}[0-9]{4}]
@@ -70,28 +71,23 @@ func validateNilai(PrediksiNilai string) bool {
 
 // MataKuliahExists will check if a mata kuliah exists in the database from its ID
 func MataKuliahExists(ID string) bool {
-	res := false
-	MataKuliahSet.Do(func(i interface{}) {
-		if i.(MataKuliah).ID == ID {
-			res = true
-			return
+	for i := 0; i < len(MataKuliahList); i++ {
+		if MataKuliahList[i].ID == ID {
+			return true
 		}
-	})
-	return res
+	}
+	return false
 }
 
 // DeleteMataKuliah will delete a mata kuliah from the set
 func DeleteMataKuliah(ID string) {
-	var mk MataKuliah
 	if !MataKuliahExists(ID) {
 		panic("mata kuliah doesn't exist")
 	}
-	MataKuliahSet.Do(func(i interface{}) {
-		if i.(MataKuliah).ID == ID {
-			mk = i.(MataKuliah)
-			return
+	for i := 0; i < len(MataKuliahList); i++ {
+		if MataKuliahList[i].ID == ID {
+			MataKuliahList = append(MataKuliahList[:i], MataKuliahList[i+1:]...)
+			break
 		}
-	})
-
-	MataKuliahSet.Remove(mk)
+	}
 }
