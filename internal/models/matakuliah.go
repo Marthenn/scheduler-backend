@@ -1,11 +1,6 @@
 package models
 
-import (
-	"github.com/golang-collections/collections/set"
-)
-
 var MataKuliahList = []MataKuliah{}
-var MataKuliahSet = set.New()
 
 type MataKuliah struct {
 	ID              string
