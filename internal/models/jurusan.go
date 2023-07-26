@@ -19,3 +19,15 @@ func NewJurusan(jurusan string, fakultas string) {
 	}
 	JurusanSet.Insert(j)
 }
+
+// JurusanExists check if a jurusan exists in the set (the fakultas will be ignored)
+func JurusanExists(jurusan string) bool {
+	res := false
+	JurusanSet.Do(func(j interface{}) {
+		if j.(Jurusan).Jurusan == jurusan {
+			res = true
+			return
+		}
+	})
+	return res
+}
