@@ -18,6 +18,9 @@ type MataKuliah struct {
 // NewMataKuliah creates a new MataKuliah object
 func NewMataKuliah(ID string, Nama string, SKS int, Jurusan string, SemesterMinimal int, PrediksiNilai string) {
 	// validate each values
+	if !validateID(ID) {
+		panic("ID must be 2 letters and 4 numbers [A-Z]{2}[0-9]{4}")
+	}
 	if SKS < 1 {
 		panic("sks must be greater than 0")
 	}
@@ -38,6 +41,21 @@ func NewMataKuliah(ID string, Nama string, SKS int, Jurusan string, SemesterMini
 		PrediksiNilai:   PrediksiNilai,
 	}
 	MataKuliahSet.Insert(mk)
+}
+
+// validateID will check if the ID consists of 2letters and 4numbers [A-Z]{2}[0-9]{4}]
+func validateID(ID string) bool {
+	for i := 0; i < 2; i++ {
+		if ID[i] < 'A' || ID[i] > 'Z' {
+			return false
+		}
+	}
+	for i := 2; i < 6; i++ {
+		if ID[i] < '0' || ID[i] > '9' {
+			return false
+		}
+	}
+	return true
 }
 
 // validateNilai will checks if the PrediksiNilai is within the range of the allowed values
