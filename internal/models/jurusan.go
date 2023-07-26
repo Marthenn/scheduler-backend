@@ -43,3 +43,18 @@ func HasMataKuliah(jurusan string) bool {
 	})
 	return res
 }
+
+// DeleteJurusan will remove a jurusan from the set
+func DeleteJurusan(jurusan string) {
+	var fakultas string
+	if !JurusanExists(jurusan) {
+		panic("jurusan doesn't exist")
+	}
+	JurusanSet.Do(func(j interface{}) {
+		if j.(Jurusan).Jurusan == jurusan {
+			fakultas = j.(Jurusan).Fakultas
+			return
+		}
+	})
+	JurusanSet.Remove(Jurusan{Jurusan: jurusan, Fakultas: fakultas})
+}
