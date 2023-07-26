@@ -4,6 +4,7 @@ import (
 	"scheduler-backend/internal/models"
 )
 
+// indexToGP will convert the index to the GP according to ITB's standard
 func indexToGP(index string) float64 {
 	switch index {
 	case "A":
@@ -25,7 +26,7 @@ func indexToGP(index string) float64 {
 	}
 }
 
-// CalculateGPA will calculate the GPA from a list of mata kuliah
+// calculateGPA will calculate the GPA from a list of mata kuliah
 func calculateGPA(matkul []models.MataKuliah) float64 {
 	var totalSKS float64
 	var totalGP float64
@@ -35,4 +36,9 @@ func calculateGPA(matkul []models.MataKuliah) float64 {
 		totalGP += indexToGP(mk.PrediksiNilai) * float64(mk.SKS)
 	}
 	return totalGP / totalSKS
+}
+
+// KnapSack 1/0 will return the best (max GPA) combination of mata kuliah that will satisfy the given constraints
+func KnapSack(jurusan string, semester int, minSKS int, maxSKS int, mk []models.MataKuliah) []models.MataKuliah {
+
 }
