@@ -2,6 +2,7 @@ package services
 
 import (
 	"fmt"
+	"math"
 	"scheduler-backend/internal/models"
 )
 
@@ -57,16 +58,29 @@ func maxGPA(m1 []models.MataKuliah, m2 []models.MataKuliah) []models.MataKuliah 
 func KnapSack(jurusan string, semester int, minSKS int, maxSKS int) []models.MataKuliah {
 	// a 2d table to store the dp values
 	// dp[i][j] corresponds to GPA with the best combination of mata kuliah for the first i mata kuliah with total sks of j
-	dp := make([][]float64, len(models.MataKuliahList)+1)
+	dp := make([][]float64, 2) // we only need two rows at a time (space optimization)
 	for i := 0; i < len(dp); i++ {
 		dp[i] = make([]float64, maxSKS+1)
 	}
-	fmt.Println("Initialized the dp table")
-	fmt.Println(dp)
+	mk := models.EligibleMatkul(jurusan, semester)
 
-	// filling the tables
-	for i := 1; i <= len(models.MataKuliahList); i++ {
+	// filling the dp tables
+	for i := 0; i < len(mk); i++ {
+		for j := 0; j <= maxSKS; j++ {
+			if j-mk[i].SKS >= 0 {
+				dp[1][j] = math.Max(dp[0][j], dp[0][j-mk[i].SKS]+indexToGP(mk[i].PrediksiNilai))
+			} else {
+				dp[1][j] = dp[0][j]
+			}
+		}
 
+		fmt.Println(dp)
+
+		// move the table up by one row
+		for j := 0; j <= maxSKS; j++ {
+			dp[0][j] = dp[1][j]
+			dp[1][j] = 0
+		}
 	}
 
 	return []models.MataKuliah{} // TODO: placeholder
