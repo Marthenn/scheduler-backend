@@ -1,0 +1,24 @@
+{
+  "input" : [
+    {
+      "jurusan": "Teknik Telekomunikasi",
+      "fakultas": "STEI"
+    },
+    {
+      "jurusan": "Teknik Elektro",
+      "fakultas": "STEI"
+    },
+    {
+      "jurusan": "Teknik Tenaga Listrik",
+      "fakultas": "STEI"
+    },
+    {
+      "jurusan": "Perencanaan Wilayah dan Kota",
+      "fakultas": "SAPPK"
+    },
+    {
+      "jurusan": "Teknik Sipil",
+      "fakultas": "FTSL"
+    }
+  ]
+}

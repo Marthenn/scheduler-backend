@@ -1,0 +1,28 @@
+{
+  "input": [
+    {
+      "id": "IF2120",
+      "nama": "Matematika Diskrit",
+      "sks": 3,
+      "jurusan": "Teknik Informatika",
+      "semester_minimal": 3,
+      "prediksi_nilai": "A"
+    },
+    {
+      "id": "IF2123",
+      "nama": "Aljabar Linier dan Geometri",
+      "sks": 3,
+      "jurusan": "Teknik Informatika",
+      "semester_minimal": 3,
+      "prediksi_nilai": "A"
+    },
+    {
+      "id": "IF2124",
+      "nama": "Teori Bahasa Formal dan Otomata",
+      "sks": 3,
+      "jurusan": "Teknik Informatika",
+      "semester_minimal": 3,
+      "prediksi_nilai": "A"
+    }
+  ]
+}
