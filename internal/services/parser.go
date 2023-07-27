@@ -2,8 +2,7 @@ package services
 
 import (
 	"encoding/json"
-	"fmt"
-	"reflect"
+	"scheduler-backend/internal/database"
 	"scheduler-backend/internal/models"
 )
 
@@ -16,6 +15,21 @@ func ParseJurusan(jsonData []byte) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(data.Input)
-	fmt.Println(reflect.TypeOf(data.Input))
+	for i := 0; i < len(data.Input); i++ {
+		database.AddJurusan(data.Input[i].Jurusan, data.Input[i].Fakultas)
+	}
+}
+
+// ParseMatkul will add one or more mata kuliah to the database from a .json file
+func ParseMatkul(jsonData []byte) {
+	var data struct {
+		Input []models.MataKuliah `json:"Input"`
+	}
+	err := json.Unmarshal(jsonData, &data)
+	if err != nil {
+		panic(err)
+	}
+	for i := 0; i < len(data.Input); i++ {
+		database.AddMatkul(data.Input[i].ID, data.Input[i].Nama, data.Input[i].SKS, data.Input[i].Jurusan, data.Input[i].SemesterMinimal, data.Input[i].PrediksiNilai)
+	}
 }
