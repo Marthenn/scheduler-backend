@@ -86,3 +86,19 @@ func DeleteMataKuliah(ID string) {
 		}
 	}
 }
+
+// SameFakultas will return a list of mata kuliah that are in the same fakultas of the jurusan
+func SameFakultas(jurusan string) []MataKuliah {
+	fakultas := getFakultas(jurusan)
+	if fakultas == "" {
+		panic("jurusan doesn't exist or has no fakultas")
+	}
+
+	var result []MataKuliah
+	for i := 0; i < len(MataKuliahList); i++ {
+		if getFakultas(MataKuliahList[i].Jurusan) == fakultas {
+			result = append(result, MataKuliahList[i])
+		}
+	}
+	return result
+}

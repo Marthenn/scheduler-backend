@@ -48,3 +48,16 @@ func DeleteJurusan(jurusan string) {
 		}
 	}
 }
+
+// getFakultas will return the fakultas of a jurusan
+func getFakultas(jurusan string) string {
+	if !JurusanExists(jurusan) {
+		panic("jurusan doesn't exist")
+	}
+	for i := 0; i < len(JurusanList); i++ {
+		if JurusanList[i].Jurusan == jurusan {
+			return JurusanList[i].Fakultas
+		}
+	}
+	return ""
+}
