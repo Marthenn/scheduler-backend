@@ -1,6 +1,7 @@
 package services
 
 import (
+	"fmt"
 	"scheduler-backend/internal/models"
 )
 
@@ -38,7 +39,35 @@ func calculateGPA(matkul []models.MataKuliah) float64 {
 	return totalGP / totalSKS
 }
 
-// KnapSack 1/0 will return the best (max GPA) combination of mata kuliah that will satisfy the given constraints
-func KnapSack(jurusan string, semester int, minSKS int, maxSKS int, mk []models.MataKuliah) []models.MataKuliah {
+// maxGPA is a helper function for the 1/0 knapsack (return the list with the max GPA).
+// If the GPA is the same, return the list with the most mata kuliah
+func maxGPA(m1 []models.MataKuliah, m2 []models.MataKuliah) []models.MataKuliah {
+	if calculateGPA(m1) > calculateGPA(m2) {
+		return m1
+	}
+	if calculateGPA(m1) == calculateGPA(m2) {
+		if len(m1) > len(m2) {
+			return m1
+		}
+	}
+	return m2
+}
 
+// KnapSack 1/0 will return the best (max GPA) combination of mata kuliah that will satisfy the given constraints (having total sks between minSKS and maxSKS)
+func KnapSack(jurusan string, semester int, minSKS int, maxSKS int) []models.MataKuliah {
+	// a 2d table to store the dp values
+	// dp[i][j] corresponds to GPA with the best combination of mata kuliah for the first i mata kuliah with total sks of j
+	dp := make([][]float64, len(models.MataKuliahList)+1)
+	for i := 0; i < len(dp); i++ {
+		dp[i] = make([]float64, maxSKS+1)
+	}
+	fmt.Println("Initialized the dp table")
+	fmt.Println(dp)
+
+	// filling the tables
+	for i := 1; i <= len(models.MataKuliahList); i++ {
+
+	}
+
+	return []models.MataKuliah{} // TODO: placeholder
 }
