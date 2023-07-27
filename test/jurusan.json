@@ -1,28 +1,28 @@
 {
-  "input" : [
+  "Input": [
     {
       "Jurusan" : "Teknik Informatika",
       "Fakultas" : "STEI"
     },
     {
-      "jurusan": "Teknik Telekomunikasi",
-      "fakultas": "STEI"
+      "Jurusan": "Teknik Telekomunikasi",
+      "Fakultas": "STEI"
     },
     {
-      "jurusan": "Teknik Elektro",
-      "fakultas": "STEI"
+      "Jurusan": "Teknik Elektro",
+      "Fakultas": "STEI"
     },
     {
-      "jurusan": "Teknik Tenaga Listrik",
-      "fakultas": "STEI"
+      "Jurusan": "Teknik Tenaga Listrik",
+      "Fakultas": "STEI"
     },
     {
-      "jurusan": "Perencanaan Wilayah dan Kota",
-      "fakultas": "SAPPK"
+      "Jurusan": "Perencanaan Wilayah dan Kota",
+      "Fakultas": "SAPPK"
     },
     {
-      "jurusan": "Teknik Sipil",
-      "fakultas": "FTSL"
+      "Jurusan": "Teknik Sipil",
+      "Fakultas": "FTSL"
     }
   ]
 }

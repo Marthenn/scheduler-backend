@@ -3,8 +3,8 @@ package models
 var JurusanList = []Jurusan{}
 
 type Jurusan struct {
-	Jurusan  string
-	Fakultas string
+	Jurusan  string `json:"Jurusan"`
+	Fakultas string `json:"Fakultas"`
 }
 
 // NewJurusan creates a new jurusan object and adds it to the set

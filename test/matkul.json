@@ -1,36 +1,36 @@
 {
   "input": [
     {
-      "id": "IF2120",
-      "nama": "Matematika Diskrit",
-      "sks": 3,
-      "jurusan": "Teknik Informatika",
-      "semester_minimal": 3,
-      "prediksi_nilai": "A"
+      "ID": "IF2120",
+      "Nama": "Matematika Diskrit",
+      "SKS": 3,
+      "Jurusan": "Teknik Informatika",
+      "SemesterMinimal": 3,
+      "PrediksiNilai": "A"
     },
     {
-      "id": "IF2123",
-      "nama": "Aljabar Linier dan Geometri",
-      "sks": 3,
-      "jurusan": "Teknik Informatika",
-      "semester_minimal": 3,
-      "prediksi_nilai": "A"
+      "ID": "IF2123",
+      "Nama": "Aljabar Linier dan Geometri",
+      "SKS": 3,
+      "Jurusan": "Teknik Informatika",
+      "SemesterMinimal": 3,
+      "PrediksiNilai": "A"
     },
     {
-      "id": "IF2124",
-      "nama": "Teori Bahasa Formal dan Otomata",
-      "sks": 3,
-      "jurusan": "Teknik Informatika",
-      "semester_minimal": 3,
-      "prediksi_nilai": "A"
+      "ID": "IF2124",
+      "Nama": "Teori Bahasa Formal dan Otomata",
+      "SKS": 3,
+      "Jurusan": "Teknik Informatika",
+      "SemesterMinimal": 3,
+      "PrediksiNilai": "A"
     },
     {
-      "id": "IF2211",
-      "nama": "Strategi Algoritma",
-      "sks": 3,
-      "jurusan": "Teknik Informatika",
-      "semester_minimal": 4,
-      "prediksi_nilai": "A"
+      "ID": "IF2211",
+      "Nama": "Strategi Algoritma",
+      "SKS": 3,
+      "Jurusan": "Teknik Informatika",
+      "SemesterMinimal": 4,
+      "PrediksiNilai": "A"
     }
   ]
 }
