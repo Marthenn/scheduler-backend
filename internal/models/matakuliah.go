@@ -87,8 +87,10 @@ func DeleteMataKuliah(ID string) {
 	}
 }
 
-// SameFakultas will return a list of mata kuliah that are in the same fakultas of the jurusan
-func SameFakultas(jurusan string) []MataKuliah {
+// EligibleMatkul will return a list of eligible mata kuliah for a jurusan and semester.
+// The conditions are that the mata kuliah must be in the same fakultas as the jurusan
+// and the mata kuliah must have a semester minimal less than or equal to the semester
+func EligibleMatkul(jurusan string, semester int) []MataKuliah {
 	fakultas := getFakultas(jurusan)
 	if fakultas == "" {
 		panic("jurusan doesn't exist or has no fakultas")
@@ -96,7 +98,7 @@ func SameFakultas(jurusan string) []MataKuliah {
 
 	var result []MataKuliah
 	for i := 0; i < len(MataKuliahList); i++ {
-		if getFakultas(MataKuliahList[i].Jurusan) == fakultas {
+		if getFakultas(MataKuliahList[i].Jurusan) == fakultas && MataKuliahList[i].SemesterMinimal <= semester {
 			result = append(result, MataKuliahList[i])
 		}
 	}
