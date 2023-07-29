@@ -3,14 +3,11 @@ package transport
 import (
 	"encoding/json"
 	"net/http"
-	"scheduler-backend/internal/database"
 	"scheduler-backend/internal/models"
 )
 
 // getAll will return all the mata kuliah and jurusan from the database
 func getAll(w http.ResponseWriter, r *http.Request) {
-	database.ReadAll()
-
 	// convert the lists to json
 	mataKuliahJSON, err := json.Marshal(models.MataKuliahList)
 	if err != nil {
