@@ -7,6 +7,7 @@ import (
 	"scheduler-backend/internal/models"
 )
 
+// getAll will return all the mata kuliah and jurusan from the database
 func getAll(w http.ResponseWriter, r *http.Request) {
 	database.ReadAll()
 
