@@ -54,9 +54,3 @@ func ReadMataKuliah() {
 		models.NewMataKuliah(ID, Nama, SKS, Jurusan, SemesterMinimal, PrediksiNilai)
 	}
 }
-
-// ReadAll reads all data from the database
-func ReadAll() {
-	ReadJurusan()
-	ReadMataKuliah()
-}

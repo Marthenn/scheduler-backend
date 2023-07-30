@@ -7,6 +7,7 @@ import (
 
 // Run is the entrypoint of the application (the main function)
 func Run() {
-	database.ReadAll()
+	database.ReadJurusan()
+	database.ReadMataKuliah()
 	transport.REST()
 }

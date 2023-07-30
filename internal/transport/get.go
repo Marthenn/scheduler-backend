@@ -6,14 +6,9 @@ import (
 	"scheduler-backend/internal/models"
 )
 
-// getAll will return all the mata kuliah and jurusan from the database
-func getAll(w http.ResponseWriter, r *http.Request) {
-	// convert the lists to json
-	mataKuliahJSON, err := json.Marshal(models.MataKuliahList)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+// getJurusan will return all the jurusan from the database
+func getJurusan(w http.ResponseWriter, r *http.Request) {
+	// convert the list to json
 	jurusanJSON, err := json.Marshal(models.JurusanList)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -21,6 +16,18 @@ func getAll(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write(mataKuliahJSON)
 	w.Write(jurusanJSON)
+}
+
+// getMataKuliah will return all the mata kuliah from the database
+func getMatakuliah(w http.ResponseWriter, r *http.Request) {
+	// convert the list to json
+	matakuliahJSON, err := json.Marshal(models.MataKuliahList)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(matakuliahJSON)
 }

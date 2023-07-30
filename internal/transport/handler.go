@@ -17,8 +17,9 @@ func REST() {
 	r.HandleFunc("/matakuliah", postMataKuliah).Methods("POST")
 	r.HandleFunc("/jurusan", postJurusan).Methods("POST")
 	r.HandleFunc("/find", postResult).Methods("POST")
-	r.HandleFunc("/reset", reset).Methods("DELETE")
-	r.HandleFunc("/", getAll).Methods("GET")
+	r.HandleFunc("/", reset).Methods("DELETE")
+	r.HandleFunc("/jurusan", getJurusan).Methods("GET")
+	r.HandleFunc("/matakuliah", getMatakuliah).Methods("GET")
 
 	handler := handlers.CORS(headersOk, originsOk, methodsOk)(r)
 
