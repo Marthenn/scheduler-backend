@@ -2,7 +2,6 @@ package transport
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"scheduler-backend/internal/database"
 	"scheduler-backend/internal/models"
@@ -50,14 +49,4 @@ func postMataKuliah(w http.ResponseWriter, r *http.Request) {
 	for _, mataKuliah := range mataKuliahJSON.Input {
 		database.AddMatkul(mataKuliah.ID, mataKuliah.Nama, mataKuliah.SKS, mataKuliah.Jurusan, mataKuliah.SemesterMinimal, mataKuliah.PrediksiNilai)
 	}
-}
-
-// postResult handles the POST request to /find and returns the best matkul combination
-func postResult(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
-		return
-	}
-
-	fmt.Println(r.Body)
 }
