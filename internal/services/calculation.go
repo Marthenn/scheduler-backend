@@ -55,6 +55,7 @@ func maxGPA(m1 []models.MataKuliah, m2 []models.MataKuliah) []models.MataKuliah 
 }
 
 // KnapSack 1/0 will return the best (max GPA) combination of mata kuliah that will satisfy the given constraints (having total sks between minSKS and maxSKS)
+// TODO: make the backtrack function, make the minSKS constraint work, and return the list of mata kuliah
 func KnapSack(jurusan string, semester int, minSKS int, maxSKS int) []models.MataKuliah {
 	// a 2d table to store the dp values
 	// dp[i][j] corresponds to GPA with the best combination of mata kuliah for the first i mata kuliah with total sks of j
