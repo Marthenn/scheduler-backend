@@ -16,7 +16,7 @@ func REST() {
 
 	r.HandleFunc("/matakuliah", postMataKuliah).Methods("POST")
 	r.HandleFunc("/jurusan", postJurusan).Methods("POST")
-	r.HandleFunc("/find", getResult).Methods("GET")
+	r.HandleFunc("/find", postResult).Methods("POST")
 	r.HandleFunc("/", reset).Methods("DELETE")
 	r.HandleFunc("/jurusan", getJurusan).Methods("GET")
 	r.HandleFunc("/matakuliah", getMatakuliah).Methods("GET")
