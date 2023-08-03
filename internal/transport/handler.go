@@ -23,7 +23,7 @@ func REST() {
 
 	handler := handlers.CORS(headersOk, originsOk, methodsOk)(r)
 
-	err := http.ListenAndServe(":8080", handler)
+	err := http.ListenAndServe(":36656", handler)
 	if err != nil {
 		panic(err)
 	}
