@@ -27,8 +27,8 @@ func indexToGP(index string) float64 {
 	}
 }
 
-// calculateGPA will calculate the GPA from a list of mata kuliah
-func calculateGPA(matkul []models.MataKuliah) float64 {
+// CalculateGPA will calculate the GPA from a list of mata kuliah
+func CalculateGPA(matkul []models.MataKuliah) float64 {
 	var totalSKS float64
 	var totalGP float64
 
@@ -39,8 +39,8 @@ func calculateGPA(matkul []models.MataKuliah) float64 {
 	return totalGP / totalSKS
 }
 
-// calculateSKS will calculate the total SKS from a list of mata kuliah
-func calculateSKS(matkul []models.MataKuliah) int {
+// CalculateSKS will calculate the total SKS from a list of mata kuliah
+func CalculateSKS(matkul []models.MataKuliah) int {
 	var totalSKS int
 	for _, mk := range matkul {
 		totalSKS += mk.SKS
@@ -72,7 +72,7 @@ func KnapSack(jurusan string, semester int, minSKS int, maxSKS int) []models.Mat
 		upperLimit := int(math.Pow(2, float64(i+1))) // the upper limit of the current mata kuliah
 
 		for j := increment; j < upperLimit; j++ {
-			table[1][j] = calculateGPA(bitToMatkul(j, mk))
+			table[1][j] = CalculateGPA(bitToMatkul(j, mk))
 		}
 
 		for j := 0; j < len(table[0]); j++ {
@@ -84,10 +84,10 @@ func KnapSack(jurusan string, semester int, minSKS int, maxSKS int) []models.Mat
 
 	for i := 0; i < len(table[0]); i++ {
 		cur := bitToMatkul(i, mk)
-		if calculateSKS(cur) >= minSKS && calculateSKS(cur) <= maxSKS {
-			if len(res) == 0 || calculateGPA(cur) > calculateGPA(res) {
+		if CalculateSKS(cur) >= minSKS && CalculateSKS(cur) <= maxSKS {
+			if len(res) == 0 || CalculateGPA(cur) > CalculateGPA(res) {
 				res = cur
-			} else if (calculateGPA(cur) == calculateGPA(res)) && (calculateSKS(cur) > calculateSKS(res)) {
+			} else if (CalculateGPA(cur) == CalculateGPA(res)) && (CalculateSKS(cur) > CalculateSKS(res)) {
 				res = cur
 			}
 		}
