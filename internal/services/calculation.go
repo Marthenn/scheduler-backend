@@ -1,7 +1,6 @@
 package services
 
 import (
-	"fmt"
 	"math"
 	"scheduler-backend/internal/models"
 )
@@ -40,49 +39,58 @@ func calculateGPA(matkul []models.MataKuliah) float64 {
 	return totalGP / totalSKS
 }
 
-// maxGPA is a helper function for the 1/0 knapsack (return the list with the max GPA).
-// If the GPA is the same, return the list with the most mata kuliah
-func maxGPA(m1 []models.MataKuliah, m2 []models.MataKuliah) []models.MataKuliah {
-	if calculateGPA(m1) > calculateGPA(m2) {
-		return m1
+// calculateSKS will calculate the total SKS from a list of mata kuliah
+func calculateSKS(matkul []models.MataKuliah) int {
+	var totalSKS int
+	for _, mk := range matkul {
+		totalSKS += mk.SKS
 	}
-	if calculateGPA(m1) == calculateGPA(m2) {
-		if len(m1) > len(m2) {
-			return m1
+	return totalSKS
+}
+
+// bitToMatkul i s a helper function for the 1/0 knapsack (convert a bit to a list of mata kuliah)
+func bitToMatkul(bit int, matkul []models.MataKuliah) []models.MataKuliah {
+	var ret []models.MataKuliah
+	for i := 0; i < len(matkul); i++ {
+		if bit&(1<<uint(i)) != 0 {
+			ret = append(ret, matkul[i])
 		}
 	}
-	return m2
+	return ret
 }
 
 // KnapSack 1/0 will return the best (max GPA) combination of mata kuliah that will satisfy the given constraints (having total sks between minSKS and maxSKS)
-// TODO: make the backtrack function, make the minSKS constraint work, and return the list of mata kuliah
 func KnapSack(jurusan string, semester int, minSKS int, maxSKS int) []models.MataKuliah {
-	// a 2d table to store the dp values
-	// dp[i][j] corresponds to GPA with the best combination of mata kuliah for the first i mata kuliah with total sks of j
-	dp := make([][]float64, 2) // we only need two rows at a time (space optimization)
-	for i := 0; i < len(dp); i++ {
-		dp[i] = make([]float64, maxSKS+1)
-	}
 	mk := models.EligibleMatkul(jurusan, semester)
+	table := make([][]float64, 2)
+	for i := 0; i < len(table); i++ {
+		table[i] = make([]float64, int(math.Pow(2, float64(len(mk)))))
+	}
 
-	// filling the dp tables
 	for i := 0; i < len(mk); i++ {
-		for j := 0; j <= maxSKS; j++ {
-			if j-mk[i].SKS >= 0 {
-				dp[1][j] = math.Max(dp[0][j], dp[0][j-mk[i].SKS]+indexToGP(mk[i].PrediksiNilai))
-			} else {
-				dp[1][j] = dp[0][j]
+		increment := 1 << uint(i)                    // the current bit represented as an integer
+		upperLimit := int(math.Pow(2, float64(i+1))) // the upper limit of the current mata kuliah
+
+		for j := increment; j < upperLimit; j++ {
+			table[1][j] = calculateGPA(bitToMatkul(j, mk))
+		}
+
+		for j := 0; j < len(table[0]); j++ {
+			table[0][j] = table[1][j]
+		}
+	}
+
+	var res []models.MataKuliah
+
+	for i := 0; i < len(table[0]); i++ {
+		cur := bitToMatkul(i, mk)
+		if calculateSKS(cur) >= minSKS && calculateSKS(cur) <= maxSKS {
+			if len(res) == 0 || calculateGPA(cur) > calculateGPA(res) {
+				res = cur
+			} else if (calculateGPA(cur) == calculateGPA(res)) && (calculateSKS(cur) > calculateSKS(res)) {
+				res = cur
 			}
 		}
-
-		fmt.Println(dp)
-
-		// move the table up by one row
-		for j := 0; j <= maxSKS; j++ {
-			dp[0][j] = dp[1][j]
-			dp[1][j] = 0
-		}
 	}
-
-	return []models.MataKuliah{} // TODO: placeholder
+	return res
 }
