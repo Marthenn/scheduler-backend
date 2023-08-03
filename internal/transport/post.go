@@ -73,12 +73,10 @@ func postResult(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	fmt.Println(resultJSON.Jurusan)
-	fmt.Println(resultJSON.Semester)
-	fmt.Println(resultJSON.SKS_Min)
-	fmt.Println(resultJSON.SKS_Max)
 
 	res := services.KnapSack(resultJSON.Jurusan, resultJSON.Semester, resultJSON.SKS_Min, resultJSON.SKS_Max)
+
+	fmt.Println(res)
 
 	type body struct {
 		Result []models.MataKuliah `json:"MataKuliah"`
@@ -87,15 +85,25 @@ func postResult(w http.ResponseWriter, r *http.Request) {
 	}
 	var resBody body
 	resBody.Result = res
-	resBody.SKS = services.CalculateSKS(res)
-	resBody.GPA = services.CalculateGPA(res)
+	if len(res) == 0 {
+		resBody.SKS = 0
+		resBody.GPA = 0
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(`{"MataKuliah":[],"SKS":0,"GPA":0}`))
+		return
+	} else {
+		resBody.SKS = services.CalculateSKS(res)
+		resBody.GPA = services.CalculateGPA(res)
+	}
 
 	// return the result
-	result, err := json.Marshal(res)
+	result, err := json.Marshal(resBody)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	fmt.Println(string(result))
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(result)
