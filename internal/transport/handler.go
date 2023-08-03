@@ -4,6 +4,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"net/http"
+	"os"
 )
 
 // REST is the main function that will handle all the REST requests, it also handles the CORS
@@ -23,7 +24,9 @@ func REST() {
 
 	handler := handlers.CORS(headersOk, originsOk, methodsOk)(r)
 
-	err := http.ListenAndServe(":36656", handler)
+	port := os.Getenv("PORT")
+
+	err := http.ListenAndServe(port, handler)
 	if err != nil {
 		panic(err)
 	}
