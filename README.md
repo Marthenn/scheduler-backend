@@ -2,7 +2,7 @@
 > Repository ini merupakan bagian front-end dari sebuah web-app repository untuk mencari kombinasi mata kuliah paling optimal.
 > Kombinasi dari mata kuliah yang paling optimal adalah kombinasi yang menghasilkan IPK tertinggi dengan jumlah SKS tertinggi.
 > Pemilihan mata kuliah dibatasi oleh jurusan, semester, sks minimal, dan sks maksimal.
-> Repository back-end dapat dilihat di [sini](https://github.com/Marthenn/scheduler-frontend)
+> Repository front-end dapat dilihat di [sini](https://github.com/Marthenn/scheduler-frontend)
 
 ## Cara Menjalankan
 1. Clone repository
