@@ -20,6 +20,7 @@
 - Terdapat 2 jenis dynamic programming, yaitu top-down dan bottom-up
 - Top-down merupakan dynamic programming yang memanfaatkan rekursi
 - Bottom-up merupakan dynamic programming yang memanfaatkan iterasi
+- Memiliki kompleksitas waktu O(2<sup>N</sup>) karena melakukan iterasi yang seperti mengenerasikan full binary tree
 
 ## Analisis Algoritma
 - Algoritma yang digunakan adalah algoritma dynamic programming bottom-up
